@@ -1,0 +1,40 @@
+# 端口号
+server:
+  port: 8080
+# spring 配置
+spring:
+  application:
+    name: notice
+# mongo配置
+  data:
+    mongodb:
+#      host: 140.143.126.226
+      host: localhost
+      port: 27017
+      database: notice
+  #      username: uzykj
+  #      password: 1qaz@WSX#EDC
+
+#thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+# 静态资源配置
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
+  mvc:
+    static-path-pattern: /static/**
+
+logging:
+  level:
+    root: info
