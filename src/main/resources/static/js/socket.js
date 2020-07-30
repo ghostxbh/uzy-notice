@@ -6,6 +6,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
     var pathName = window.document.location.pathname;
     var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
     if (host.indexOf('uzykj') > -1) host = '127.0.0.1:9100';
+    if (projectName.length < 1) pathName = 'notice';
     var wsServer = "ws://" + host + projectName;
 
     var webSocket = null;
