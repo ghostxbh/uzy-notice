@@ -6,7 +6,7 @@ RUN apk update && apk add /bin/sh
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 
-COPY target/spring-boot-mongo-1.0.jar $PROJECT_HOME/uzy-notice.jar
+COPY target/uzy-notice.jar $PROJECT_HOME/uzy-notice.jar
 
 WORKDIR $PROJECT_HOME
 

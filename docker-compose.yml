@@ -8,8 +8,8 @@ services:
     ports:
       - 9100:9100
     working_dir: /mnt/workspace/server/common/
-    depends_on:
-      - mongo
+#    depends_on:
+#      - mongo
 #    deploy:  # This will be considered only in docker swarm.
 #      replicas: 2
 #      update_config:
@@ -20,15 +20,15 @@ services:
 #        delay: 10s
 #        max_attempts: 5
 
-  mongo:
-    image: mongo
-    container_name: uzy-notice
-#    ports:  # for demo/debug purpose only
-#      - 27018:27017
-    volumes:
-      - db-data:/var/lib/mongo/data:rw
-    restart: always
-    
-
-volumes:
-  db-data: {}
+#  mongo:
+#    image: mongo
+#    container_name: uzy-notice
+##    ports:  # for demo/debug purpose only
+##      - 27018:27017
+#    volumes:
+#      - db-data:/var/lib/mongo/data:rw
+#    restart: always
+#
+#
+#volumes:
+#  db-data: {}
