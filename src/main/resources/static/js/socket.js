@@ -27,7 +27,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
                 new Notification('系统通知', {body: res});
             });
         } else {
-            layer.msg("系统通知: " + res, { icon: 6 })
+            layer.msg("系统通知: " + res, { icon: 6, time: 2000 })
         }
         location.href = "/notice/";
         var audio = window.document.createElement("audio");
