@@ -91,11 +91,6 @@
             <version>1.2.7</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -107,14 +102,6 @@
                 <configuration>
                     <mainClass>com.uzykj.notice.NoticeApplication</mainClass>
                 </configuration>
-                <dependencies>
-                    <!-- mvn spring-boot:run 热部署启动 -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>1.2.7.RELEASE</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

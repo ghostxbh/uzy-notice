@@ -10,8 +10,6 @@ import org.springframework.web.socket.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class LayIMSocketHandler implements WebSocketHandler {
 
