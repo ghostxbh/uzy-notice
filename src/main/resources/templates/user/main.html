@@ -130,13 +130,11 @@
 </div>
 <!-- layui.js -->
 <script th:src="@{/layui/layui.js}"></script>
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/socket.js}"></script>
 <!-- layui规范化用法 -->
 <script type="text/javascript">
     layui.config({
         base: '/notice/js/'
-    }).use('main');
+    }).use(['datalist', 'socket']);
 </script>
 </body>
 </html>
