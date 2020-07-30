@@ -30,3 +30,5 @@ services:
     restart: always
     
 
+volumes:
+  db-data: {}
