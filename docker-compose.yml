@@ -10,15 +10,15 @@ services:
     working_dir: /mnt/workspace/server/common/
     depends_on:
       - mongo
-    deploy:  # This will be considered only in docker swarm.
-      replicas: 2
-      update_config:
-        parallelism: 1
-        delay: 20s
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 5
+#    deploy:  # This will be considered only in docker swarm.
+#      replicas: 2
+#      update_config:
+#        parallelism: 1
+#        delay: 20s
+#      restart_policy:
+#        condition: on-failure
+#        delay: 10s
+#        max_attempts: 5
 
   mongo:
     image: mongo
