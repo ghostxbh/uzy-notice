@@ -15,7 +15,7 @@
     function initilData(currentIndex, pageSize) {
         var index = layer.load(1);
         $.ajax({
-            url: '/notice/n/list',
+            url: '/n/list',
             async: false,
             type: 'post',
             dateType: 'json',
@@ -81,7 +81,7 @@
                 type: 2
                 , title: 'JSON数据展示'
                 , area: ['700px', '500px']
-                , content: '/notice/n/' + text
+                , content: '/n/' + text
                 , btn: '关闭'
                 , btnAlign: 'c' //按钮居中
                 , shade: 0.6 //不显示遮罩

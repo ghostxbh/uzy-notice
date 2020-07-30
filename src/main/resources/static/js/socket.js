@@ -29,9 +29,9 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         } else {
             layer.msg("系统通知: " + res, { icon: 6, time: 2000 })
         }
-        location.href = "/notice/";
+        location.href = "/";
         var audio = window.document.createElement("audio");
-        audio.src = "/notice/layui/css/modules/layim/voice/default.wav";
+        audio.src = "/layui/css/modules/layim/voice/default.wav";
         audio.play()
     };
     exports('socket', {});
