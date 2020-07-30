@@ -23,11 +23,10 @@ kill -9 $port
 fi
 
 cd $app
-(nohup java -Xmx1024m -Xms100m -jar $app/target/$jar >$app/nohup.out 2>&1) &
+nohup java -Xmx1024m -Xms100m -jar $app/target/$jar &
 
 sleep 1s
 ps -ef | grep $jar | grep -v 'grep' | awk '{print $2}'
 
 echo "启动notice成功"
-sleep 1s
 
