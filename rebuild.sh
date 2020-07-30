@@ -5,7 +5,7 @@ name=uzy-notice
 app=$group/$name
 jar="$name.jar"
 
-cd $src
+cd $app
 
 echo "拉取新代码"
 git pull
