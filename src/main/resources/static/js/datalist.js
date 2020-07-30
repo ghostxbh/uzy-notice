@@ -96,6 +96,7 @@
             var type = othis.data('type'), text = othis.text(), json = othis.val();
             layer.open({
                 type: 1
+                , id: type
                 , title: 'JSON数据展示'
                 , area: ['700px', '500px']
                 , content: '<div style="padding: 35px"><pre id="geoJsonTxt">' + JsonFormat(json) + '</pre></div>'
