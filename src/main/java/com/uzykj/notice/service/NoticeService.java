@@ -5,6 +5,7 @@ import com.uzykj.notice.utils.StringUtil;
 import com.uzykj.notice.utils.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,6 +26,11 @@ public class NoticeService {
     private static final Logger log = LoggerFactory.getLogger(NoticeService.class);
     @Resource
     private MongoTemplate mongoTemplate;
+
+    public Notice get(String id) {
+        log.debug("获取详情, ID: {}", id);
+        return mongoTemplate.findById(id, Notice.class);
+    }
 
     public void save(Notice notice) {
         notice.setId(StringUtil.generateId());
@@ -54,12 +60,12 @@ public class NoticeService {
         Query query = new Query();
         query.skip(skip);
         query.limit(pageSize);
+        query.with(Sort.by(Sort.Direction.DESC, "createTime"));
         return mongoTemplate.find(query, Notice.class);
     }
 
     public long findCount(){
         log.debug("查找通知总数");
-        Query query = new Query();
         return mongoTemplate.count(new Query(), Notice.class);
     }
 }
