@@ -2,11 +2,10 @@
  * Create by ghostxbh 2020/7/28
  */
 layui.define(['element', 'layer', 'form'], function (exports) {
-    var $ = layui.jquery;
-    var host = window.document.location.host;
+    var port = window.document.location.port;
     var pathName = window.document.location.pathname;
     var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
-    var wsServer = "ws://" + host + projectName;
+    var wsServer = "ws://127.0.0.1:" + port + projectName;
 
     var webSocket = null;
     if ('WebSocket' in window || 'MozWebSocket' in window) {
