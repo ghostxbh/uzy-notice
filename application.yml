@@ -1,10 +1,12 @@
 # 端口号
 server:
   port: 8080
+
 # spring 配置
 spring:
   application:
     name: notice
+
 # mongo配置
   data:
     mongodb:
@@ -21,19 +23,16 @@ spring:
     suffix: .html
     mode: HTML5
     encoding: UTF-8
+    cache: false
     servlet:
       content-type: text/html
-    cache: false
-# 静态资源配置
   resources:
     chain:
       strategy:
         content:
           enabled: true
           paths: /**
-
-  mvc:
-    static-path-pattern: /static/**
+    static-locations: classpath:/static/,classpath:/templates/
 
 logging:
   level:
