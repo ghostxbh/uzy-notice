@@ -1,5 +1,4 @@
 #!/bin/bash
-source /etc/profile
 
 group=/mnt/workspace/server/common
 name=uzy-notice
