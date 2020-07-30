@@ -29,7 +29,6 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         } else {
             layer.msg("系统通知: " + res, { icon: 6 })
         }
-        console.log(res)
         location.href = "/notice/";
         var audio = window.document.createElement("audio");
         audio.src = "/notice/layui/css/modules/layim/voice/default.wav";
