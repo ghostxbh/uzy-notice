@@ -5,6 +5,7 @@
 - JDK 1.8
 - MongoDB 3.4
 - SpringBoot 2.3.2
+- swagger 3.0.0
 
 - 前端
     + thymeleaf模版
@@ -22,3 +23,9 @@
 
 ## 接口参考
 [restApi](http://140.143.126.226:9100/swagger-ui/index.htm)
+
+## 部署方案
+
+### shell脚本
+
+### docker-compose
