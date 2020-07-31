@@ -21,4 +21,4 @@
 [通知列表](http://140.143.126.226:9100)
 
 ## 接口参考
-[restApi](http://140.143.126.226:9100/swagger-ui.html)
+[restApi](http://140.143.126.226:9100/swagger-ui/index.htm)
