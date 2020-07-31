@@ -18,9 +18,9 @@ public class Notice implements Serializable {
     private String id;
     private String type;
     private String contents;
+    private String headers;
     private String creator;
     private String createTime;
     private String updateTime;
     private Long updateStamp;
-    private Event event;
 }

@@ -4,6 +4,7 @@ import com.uzykj.notice.common.json.AjaxJson;
 import com.uzykj.notice.common.websocket.service.system.SystemInfoSocketHandler;
 import com.uzykj.notice.controller.BaseController;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PushMsgController extends BaseController {
 
     @PostMapping("/pushAll")
+    @ApiOperation("推送给所有人")
     public AjaxJson pushAll(@RequestParam("msg") String msg) {
         AjaxJson j = new AjaxJson();
         log.debug("推送消息, {}", msg);
