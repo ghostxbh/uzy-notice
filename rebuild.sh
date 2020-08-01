@@ -1,6 +1,6 @@
 #!/bin/bash
 
-group=/mnt/workspace/server/common
+group=$1
 name=uzy-notice
 app=$group/$name
 jar="$name.jar"
