@@ -32,7 +32,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         }
         location.href = "/";
         var audio = window.document.createElement("audio");
-        audio.src = "/layui/css/modules/layim/voice/default.wav";
+        audio.src = "/notice/layui/css/modules/layim/voice/default.wav";
         audio.play()
     };
     exports('socket', {});
