@@ -10,4 +10,4 @@ COPY target/uzy-notice.jar $PROJECT_HOME/uzy-notice.jar
 
 WORKDIR $PROJECT_HOME
 
-CMD ["java", "-Dspring.data.mongodb.uri=mongodb://uzykj:1qaz@WSX#EDC@127.0.0.1:27017/notice","-jar","./uzy-notice.jar"]
+CMD ["java", "-Dspring.data.mongodb.uri=mongodb://root:zxcASDqwe@34.92.138.182:27017","-jar","./uzy-notice.jar"]
