@@ -141,9 +141,9 @@
     var wsServer = "wss://" + host + projectName;
     var webSocket;
     if ('WebSocket' in window || 'MozWebSocket' in window) {
-        webSocket = new WebSocket(wsServer + "/systemInfoSocketServer");
+        webSocket = new WebSocket(wsServer + "/socket.io/systemInfoSocketServer");
     } else {
-        webSocket = new SockJS(wsServer + "/sockjs/systemInfoSocketServer");
+        webSocket = new SockJS(wsServer + "/socket.io/sockjs/systemInfoSocketServer");
     }
 
     webSocket.onerror = function (event) {

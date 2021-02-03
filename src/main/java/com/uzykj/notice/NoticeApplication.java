@@ -40,8 +40,8 @@ public class NoticeApplication implements WebSocketConfigurer, WebMvcConfigurer 
      */
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(socketHandler, "/systemInfoSocketServer").addInterceptors(new SystemInfoSocketHandshakeInterceptor());
-        registry.addHandler(socketHandler, "/sockjs/systemInfoSocketServer").addInterceptors(new SystemInfoSocketHandshakeInterceptor())
+        registry.addHandler(socketHandler, "/socket.io/systemInfoSocketServer").addInterceptors(new SystemInfoSocketHandshakeInterceptor());
+        registry.addHandler(socketHandler, "/socket.io/sockjs/systemInfoSocketServer").addInterceptors(new SystemInfoSocketHandshakeInterceptor())
                 .withSockJS();
     }
 
