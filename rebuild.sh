@@ -1,6 +1,7 @@
 #!/bin/bash
 
 name=uzy-notice
+port=9100
 jar="$name.jar"
 
 echo "拉取新代码"
@@ -12,17 +13,20 @@ echo "===================="
 
 mvn clean install
 
-port=`ps -ef | grep "$jar" | grep -v 'grep' | awk '{print $2}'`
-echo "kill $port"
-if [ -n "$port" ]; then
-kill -9 $port
-fi
+echo "停止 $name 容器"
+docker ps | grep "$name"  | awk '{print $1}' | xargs docker stop
 
-cd $app
-nohup java -Xmx=1g -Xms=100m -jar target/$jar --spring.profiles.active=prod > nohup.out 2>&1 &
+echo "删除 $name 容器"
+docker ps | grep "$name"  | awk '{print $1}' | xargs docker rm
 
-sleep 1s
-ps -ef | grep $jar | grep -v 'grep' | awk '{print $2}'
+echo "删除 $name 镜像"
+docker images | grep "$name"  | awk '{print $1}' | xargs docker rmi
+
+echo "打包镜像"
+docker build -t $name .
+
+echo "运行容器"
+docker run -d -p $port:$port $name
 
 echo "启动notice成功"
 
