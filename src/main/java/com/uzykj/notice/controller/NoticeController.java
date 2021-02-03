@@ -1,16 +1,14 @@
 package com.uzykj.notice.controller;
 
+import com.uzykj.notice.common.Constants;
 import com.uzykj.notice.common.json.AjaxJson;
 import com.uzykj.notice.domian.Notice;
 import com.uzykj.notice.service.NoticeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.beans.Encoder;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -48,5 +46,30 @@ public class NoticeController {
             log.error("获取列表失败", e);
         }
         return "";
+    }
+
+    @GetMapping(value = "/remove")
+    public AjaxJson remove(@RequestParam String virify) {
+        if (StringUtils.isEmpty(virify) || !virify.equals(Constants.DEL_COMMAND)) {
+            return AjaxJson.builder()
+                    .success(false)
+                    .msg("验证失败")
+                    .build();
+        }
+
+        try {
+            long count = noticeService.findCount();
+            noticeService.delAll();
+            return AjaxJson.builder()
+                    .success(true)
+                    .msg("ok! 总共删除 " + count + " 条")
+                    .build();
+        } catch (Exception e) {
+            log.error("获取列表失败", e);
+            return AjaxJson.builder()
+                    .success(false)
+                    .msg(e.getMessage())
+                    .build();
+        }
     }
 }
