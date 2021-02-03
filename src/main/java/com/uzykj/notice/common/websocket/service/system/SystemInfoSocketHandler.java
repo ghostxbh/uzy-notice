@@ -2,13 +2,17 @@ package com.uzykj.notice.common.websocket.service.system;
 
 
 import com.uzykj.notice.common.websocket.utils.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+@Slf4j
+@Service
 public class SystemInfoSocketHandler implements WebSocketHandler {
 
     private static final Logger logger;
@@ -43,9 +47,7 @@ public class SystemInfoSocketHandler implements WebSocketHandler {
     //接收js侧发送来的用户信息
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> socketMessage) throws Exception {
-
         String message = socketMessage.getPayload().toString();
-
     }
 
     @Override

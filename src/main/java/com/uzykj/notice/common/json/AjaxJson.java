@@ -1,5 +1,10 @@
 package com.uzykj.notice.common.json;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.LinkedHashMap;
 
 
@@ -8,6 +13,10 @@ import java.util.LinkedHashMap;
  *
  * @author
  */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AjaxJson {
 
     private boolean success = true;// 是否成功
