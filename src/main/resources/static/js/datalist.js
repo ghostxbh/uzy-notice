@@ -138,7 +138,7 @@
     var host = window.document.location.host;
     var pathName = window.document.location.pathname;
     var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
-    var wsServer = "ws://" + host + projectName;
+    var wsServer = "wss://" + host + projectName;
     var webSocket;
     if ('WebSocket' in window || 'MozWebSocket' in window) {
         webSocket = new WebSocket(wsServer + "/systemInfoSocketServer");
