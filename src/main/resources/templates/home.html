@@ -4,37 +4,46 @@
 <head>
     <meta charset="utf-8"/>
     <title>柚子云 | 通知服务</title>
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon" media="screen">
     <!-- layui.css -->
-    <link rel="shortcut icon" th:href="@{/notice/favicon.ico}" type="image/x-icon" media="screen">
-    <!-- layui.css -->
-    <link th:href="@{/notice/layui/css/layui.css}" rel="stylesheet"/>
-    <!-- font-awesome.css -->
-    <link th:href="@{/notice/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
     <!-- animate.css -->
-    <link th:href="@{/notice/css/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.min.css}" rel="stylesheet"/>
     <!-- 本页样式 -->
-    <link th:href="@{/notice/css/main.css}" rel="stylesheet"/>
-    <link th:href="@{/notice/css/json.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link th:href="@{/css/json.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="layui-nav layui-layout-admin">
     <!--顶部-->
     <div class="layui-header">
+        <ul class="ht-nav" style="left: -90%">
+            <li class="ht-nav-item">
+                <a href="https://uzykj.com/"><i class="fa fa-power-off fa-fw"></i>首页</a>
+            </li>
+            <li class="ht-nav-item">
+                <a href="https://uzykj.com/tool.html"><i class="fa fa-power-off fa-fw"></i>工具</a>
+            </li>
+        </ul>
         <span class="sys-title">数据流出通知</span>
         <ul class="ht-nav">
             <li class="ht-nav-item">
-                <a href="https://uzykj.com"><i class="fa fa-power-off fa-fw"></i>登陆</a>
+                <a href="http://127.0.0.1:9100/notice/swagger-ui/index.html"><i class="fa fa-power-off fa-fw"></i>文档</a>
+            </li>
+            <li class="ht-nav-item"></li>
+            <li class="ht-nav-item">
+                <a href="https://uzykj.com/dist"><i class="fa fa-power-off fa-fw"></i>登陆</a>
             </li>
         </ul>
     </div>
 </div>
 <fieldset id="dataConsole" class="layui-elem-field layui-field-title" style="display:none;">
     <legend>控制台</legend>
-    <div class="layui-field-box">
+    <!--<div class="layui-field-box">
         <div id="articleIndexTop">
             <form class="layui-form layui-form-pane" action="">
                 <div class="layui-form-item" style="margin:0;margin-top:15px;">
-                    <!--<div class="layui-inline">
+                    <div class="layui-inline">
                         <label class="layui-form-label">时间范围</label>
                         <div class="layui-input-inline">
                             <input type="text" class="layui-input" id="date_time" placeholder=" - ">
@@ -46,11 +55,11 @@
                         <div class="layui-input-inline" style="width:auto">
                             <button class="layui-btn" lay-submit lay-filter="formSearch">搜索</button>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </form>
         </div>
-    </div>
+    </div>-->
 </fieldset>
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field" style="display:none;">
     <legend style="text-align:center;">通知列表</legend>
@@ -80,13 +89,13 @@
     </div>
 </fieldset>
 <!-- layui.js -->
-<script th:src="@{/notice/layui/layui.js}"></script>
-<script th:src="@{/notice/js/jquery.min.js}"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
 <!-- layui规范化用法 -->
 <script type="text/javascript">
-    layui.config({
-        base: '/js/'
-    }).use(['datalist', 'socket']);
+  layui.config({
+    base: '/notice/js/'
+  }).use(['datalist']);
 </script>
 </body>
 </html>

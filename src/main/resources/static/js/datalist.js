@@ -7,6 +7,8 @@
     var laypageId = 'pageNav';
     initilData(1, 10);
 
+
+
     /**
      * 初始化数据
      * currentIndex：当前也下标
@@ -15,7 +17,7 @@
     function initilData(currentIndex, pageSize) {
         var index = layer.load(1);
         $.ajax({
-            url: '/n/list',
+            url: '/notice/list',
             async: false,
             type: 'post',
             dateType: 'json',
@@ -83,7 +85,7 @@
                 type: 2
                 , title: 'JSON数据展示'
                 , area: ['700px', '500px']
-                , content: '/n/' + text
+                , content: '/' + text
                 , btn: '关闭'
                 , btnAlign: 'c' //按钮居中
                 , shade: 0.6 //不显示遮罩
@@ -101,8 +103,8 @@
                 , id: type
                 , title: 'JSON数据展示'
                 , area: ['700px', '500px']
-                , content: '<div style="padding: 35px"><pre id="geoJsonTxt">' + JsonFormat(json) + '</pre></div>'
-                , btn: '关闭'
+                , content: `<div style="padding: 35px"><pre>${formatJSON(json)}</pre></div>`
+                , btn: ['关闭', '复制']
                 , btnAlign: 'c' //按钮居中
                 , shade: 0.6 //不显示遮罩
                 , maxmin: true //允许全屏最小化
@@ -111,10 +113,18 @@
                     layer.closeAll();
                 }
                 , btn2: function () {
-                    $('#geoJsonTxt').val(jsonFormat2(json));
+                    var oInput = document.createElement('input');
+                    oInput.value = JSON.parse(json);
+                    oInput.style = 'position: absolute;top: -100px;';
+                    document.body.appendChild(oInput);
+                    oInput.select();
+                    var command = document.execCommand("Copy");
+                    if (command) {
+                        layer.msg("复制成功", { icon: 1, time: 2000 })
+                    }
                 }
                 , btn3: function () {
-                    $('#geoJsonTxt').val(JsonFormat(json));
+                    $('.jsonTxtInput').val(json);
                 }
             });
         }
@@ -123,6 +133,40 @@
         var othis = $(this), method = othis.data('method');
         active[method] ? active[method].call(this, othis) : '';
     });
+
+
+    var host = window.document.location.host;
+    var pathName = window.document.location.pathname;
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    var wsServer = "ws://" + host + projectName;
+    var webSocket;
+    if ('WebSocket' in window || 'MozWebSocket' in window) {
+        webSocket = new WebSocket(wsServer + "/systemInfoSocketServer");
+    } else {
+        webSocket = new SockJS(wsServer + "/sockjs/systemInfoSocketServer");
+    }
+
+    webSocket.onerror = function (event) {
+        layer.msg("websockt连接发生错误，请刷新页面重试!", { icon: 5 })
+    };
+
+    // 接收到消息的回调方法
+    webSocket.onmessage = function (event) {
+        var res = event.data;
+        var audio = window.document.createElement("audio");
+        audio.src = "/notice/layui/css/modules/layim/voice/default.wav";
+        audio.play().then(r => console.log(r));
+        initilData(1, 10);
+
+        if (window.Notification && Notification.permission !== "denied") {
+            Notification.requestPermission(function (status) {
+                new Notification('系统通知', {body: res});
+            });
+        } else {
+            layer.msg("系统通知: " + res, { icon: 6, time: 2000 })
+        }
+    };
+
     exports('datalist', {});
 });
 function JsonFormat(json) {
@@ -152,6 +196,43 @@ function JsonFormat(json) {
         return '<span class="' + cls + '">' + match + '</span>';
     });
     $("#geoJsonTxt").html(json);
+}
+
+function formatJSON (json, indent, leftBracesInSameLine) {
+    json = JSON.parse(json);
+    function getIndentStr(level)
+    {
+        var str = '';
+        for(var i=0; i<level; i++) str += (indent || '    ');
+        return str;
+    }
+    function format(obj, level)
+    {
+        level = level == undefined ? 0 : level;
+        var result = '';
+        if(typeof obj == 'object' && obj != null) // 如果是object或者array
+        {
+            var isArray = obj instanceof Array, idx = 0;
+            result += (isArray ? '[' : '{') + '\n';
+            for(var i in obj)
+            {
+                result += (idx++ > 0 ? ',\n' : ''); // 如果不是数组或对象的第一个内容，追加逗号
+                var nextIsObj = (typeof obj[i] == 'object' && obj[i] != null), indentStr = getIndentStr(level+1);
+                result += (isArray && nextIsObj) ? '' : indentStr; // 如果当前是数组并且子项是对象，无需缩进
+                result += isArray ? '' : ('"' + i + '": ' + (nextIsObj && !leftBracesInSameLine ? '\n' : '') );
+                result += (!nextIsObj || (nextIsObj && leftBracesInSameLine && !isArray)) ? '' : indentStr;
+                result += format(obj[i], level+1); // 递归调用
+            }
+            result += '\n' + getIndentStr(level) + (isArray ? ']' : '}') + '';
+        }
+        else // 如果是 null、number、boolean、string
+        {
+            var quot = typeof obj == 'string' ? '"' : '';//是否是字符串
+            result += (quot + obj + quot + '');
+        }
+        return result;
+    }
+    return format(eval('(' + json + ')')); // 使用eval的好处是可以解析非标准JSON
 }
 
 /**
