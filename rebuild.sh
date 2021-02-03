@@ -1,11 +1,7 @@
 #!/bin/bash
 
-group=$1
 name=uzy-notice
-app=$group/$name
 jar="$name.jar"
-
-cd $app
 
 echo "拉取新代码"
 git pull
@@ -14,7 +10,7 @@ echo "===================="
 git log | head -n 10
 echo "===================="
 
-mvn clean package
+mvn clean install
 
 port=`ps -ef | grep "$jar" | grep -v 'grep' | awk '{print $2}'`
 echo "kill $port"
@@ -23,7 +19,7 @@ kill -9 $port
 fi
 
 cd $app
-nohup java -Xmx1024m -Xms100m -jar $app/target/$jar &
+nohup java -Xmx=1g -Xms=100m -jar target/$jar --spring.profiles.active=prod > nohup.out 2>&1 &
 
 sleep 1s
 ps -ef | grep $jar | grep -v 'grep' | awk '{print $2}'

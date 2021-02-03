@@ -24,28 +24,8 @@ spring:
       uri: mongodb://root:zxcASDqwe@34.92.138.182:27017
       authentication-database: admin
 
-  redis:
-    #数据库索引
-    database: ${REDIS_DB:0}
-    host: ${REDIS_HOST:34.92.138.182}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PWD:qweASDzxc}
-    #连接超时时间
-    timeout: 5000
-
   resources:
     static-locations: classpath:/static/,classpath:/templates/
 
   mvc:
     static-path-pattern: /**
-
-task:
-  pool:
-    # 核心线程池大小
-    core-pool-size: 10
-    # 最大线程数
-    max-pool-size: 30
-    # 活跃时间
-    keep-alive-seconds: 60
-    # 队列容量
-    queue-capacity: 50
