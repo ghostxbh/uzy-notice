@@ -21,7 +21,7 @@ spring:
   data:
     mongodb:
       database: notice
-      uri: mongodb://root:zxcASDqwe@34.92.138.182:27017
+      uri: mongodb://127.0.0.1:27017
       authentication-database: admin
 
   resources:
