@@ -17,7 +17,7 @@ echo "停止 $name 容器"
 docker ps | grep "$name"  | awk '{print $1}' | xargs docker stop
 
 echo "删除 $name 容器"
-docker ps | grep "$name"  | awk '{print $1}' | xargs -t docker rm
+docker images|awk '{print  $1"\t"$3}'|grep "$name"|awk '{print $2}' | xargs -t docker rm
 
 echo "删除 $name 镜像"
 docker rmi $name
