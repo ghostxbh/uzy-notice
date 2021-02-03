@@ -17,10 +17,10 @@ echo "停止 $name 容器"
 docker ps | grep "$name"  | awk '{print $1}' | xargs docker stop
 
 echo "删除 $name 容器"
-docker ps | grep "$name"  | awk '{print $1}' | xargs docker rm
+docker ps | grep "$name"  | awk '{print $1}' | xargs -t docker rm
 
 echo "删除 $name 镜像"
-docker images | grep "$name"  | awk '{print $1}' | xargs docker rmi
+docker images | grep "$name"  | awk '{print $1}' | xargs -t docker rmi
 
 echo "打包镜像"
 docker build -t $name .
@@ -28,5 +28,5 @@ docker build -t $name .
 echo "运行容器"
 docker run -d -p $port:$port $name
 
-echo "启动notice成功"
+echo "docker启动notice成功"
 
