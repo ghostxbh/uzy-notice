@@ -33,7 +33,6 @@ public class NoticeService {
     }
 
     public void save(Notice notice) {
-        notice.setId(StringUtil.generateId());
         notice.setCreateTime(TimeUtils.getCurrentTime());
         notice.setUpdateTime(TimeUtils.getCurrentTime());
         notice.setUpdateStamp(TimeUtils.getCurrentTimeStamp());

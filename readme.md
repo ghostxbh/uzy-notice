@@ -10,7 +10,7 @@
 - 前端
     + thymeleaf模版
     + layui
-    + jQ
+    + jQuery
     + bootstrap
 
 ## 功能描述
@@ -19,13 +19,27 @@
 - 流出数据通知
 
 ## 测试地址
-[通知列表](http://140.143.126.226:9100)
+[通知列表](http://127.0.0.1:9100/notice)
 
 ## 接口参考
-[restApi](http://140.143.126.226:9100/swagger-ui/index.htm)
+[restApi](http://127.0.0.1:9100/notice/swagger-ui/index.html)
 
 ## 部署方案
 
 ### shell脚本
+```shell script
+bash rebuild.sh
+```
 
-### docker-compose
+### docker
+```shell script
+# 1.创建镜像
+docker build -t uzy-notice .
+
+# 2.启动
+docker run -d -p 9100:9100 uzy-notice
+
+# 3.查看状态
+docker ps
+docker logs -f uzy-notice
+```
