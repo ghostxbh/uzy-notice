@@ -3,8 +3,6 @@ package com.uzykj.notice.common.websocket.service.system;
 
 import com.uzykj.notice.common.websocket.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
 
@@ -15,13 +13,10 @@ import java.util.ArrayList;
 @Service
 public class SystemInfoSocketHandler implements WebSocketHandler {
 
-    private static final Logger logger;
-
     private static final ArrayList<WebSocketSession> users;
 
     static {
         users = new ArrayList<WebSocketSession>();
-        logger = LoggerFactory.getLogger(SystemInfoSocketHandler.class);
     }
 
     public ArrayList<String> getOnlineLoginNames() {
@@ -40,7 +35,7 @@ public class SystemInfoSocketHandler implements WebSocketHandler {
     //建立websocket连接时触发
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        logger.debug("connect to the websocket success......");
+        log.debug("connect to the websocket success......");
         users.add(session);
     }
 
@@ -48,6 +43,7 @@ public class SystemInfoSocketHandler implements WebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> socketMessage) throws Exception {
         String message = socketMessage.getPayload().toString();
+        log.info("client send message: {}", message);
     }
 
     @Override
@@ -55,14 +51,14 @@ public class SystemInfoSocketHandler implements WebSocketHandler {
         if (session.isOpen()) {
             session.close();
         }
-        logger.debug("websocket connection closed......");
+        log.debug("websocket connection closed......");
         users.remove(session);
 
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
-        logger.debug("websocket connection closed......");
+        log.debug("websocket connection closed......");
         users.remove(session);
     }
 

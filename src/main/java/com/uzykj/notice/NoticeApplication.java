@@ -4,7 +4,6 @@ import com.uzykj.notice.common.websocket.service.system.SystemInfoSocketHandler;
 import com.uzykj.notice.common.websocket.service.system.SystemInfoSocketHandshakeInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -40,12 +39,17 @@ public class NoticeApplication implements WebSocketConfigurer, WebMvcConfigurer 
      */
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(socketHandler, "/socket.io/systemInfoSocketServer").addInterceptors(new SystemInfoSocketHandshakeInterceptor());
-        registry.addHandler(socketHandler, "/socket.io/sockjs/systemInfoSocketServer").addInterceptors(new SystemInfoSocketHandshakeInterceptor())
+        registry.addHandler(socketHandler, "/socket.io/systemInfoSocketServer")
+                .addInterceptors(new SystemInfoSocketHandshakeInterceptor())
+                .setAllowedOrigins("*");
+        registry.addHandler(socketHandler, "/socket.io/sockjs/systemInfoSocketServer")
+                .addInterceptors(new SystemInfoSocketHandshakeInterceptor())
+                .setAllowedOrigins("*")
                 .withSockJS();
     }
 
     private String baseUrl;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String baseUrl = StringUtils.trimTrailingCharacter(this.baseUrl, '/');
