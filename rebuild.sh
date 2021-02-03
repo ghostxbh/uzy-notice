@@ -20,7 +20,7 @@ echo "删除 $name 容器"
 docker ps | grep "$name"  | awk '{print $1}' | xargs -t docker rm
 
 echo "删除 $name 镜像"
-docker images | grep "$name"  | awk '{print $1}' | xargs -t docker rmi
+docker rmi $name
 
 echo "打包镜像"
 docker build -t $name .
