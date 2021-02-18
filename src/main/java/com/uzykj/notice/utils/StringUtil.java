@@ -3,6 +3,9 @@ package com.uzykj.notice.utils;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -47,5 +50,27 @@ public class StringUtil {
             sb.append(new String(b, 0, n));
         }
         return new String(sb);
+    }
+
+    /**
+     * from表单参数转map
+     * @param str
+     * @return
+     */
+    public static Map<String, Object> getParameter(String str) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            final String charset = "utf-8";
+            str = URLDecoder.decode(str, charset);
+            String[] keyValues = str.split("&");
+            for (int i = 0; i < keyValues.length; i++) {
+                String key = keyValues[i].substring(0, keyValues[i].indexOf("="));
+                String value = keyValues[i].substring(keyValues[i].indexOf("=") + 1);
+                map.put(key, value);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 }

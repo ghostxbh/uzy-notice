@@ -12,7 +12,7 @@
     <groupId>com.uzykj</groupId>
     <artifactId>notice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>notice</name>
+    <name>柚子云 - 通知</name>
     <description>notice project for Spring Boot</description>
 
     <properties>
@@ -83,6 +83,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
 
     </dependencies>

@@ -8,4 +8,6 @@ public interface Constants {
     String DEL_COMMAND = "del:uzykj.com";
 
     String NOTICE_COLLECTION = "notice";
+
+    String NOTICE_NEW_MSG = "您有新的流入数据";
 }
