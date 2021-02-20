@@ -1,6 +1,11 @@
 # uzy-notice
 柚子云通知服务
 
+## 通告
+🌟🌟🌟 项目仓库不再维护!!! 🌟🌟🌟
+
+请跳转[新地址](https://github.com/ghostxbh/uzy-fp)
+
 ## 架构
 - JDK 1.8
 - MongoDB 3.4
@@ -28,18 +33,10 @@
 
 ### shell脚本
 ```shell script
-bash rebuild.sh
+bash build.sh
 ```
 
 ### docker
 ```shell script
-# 1.创建镜像
-docker build -t uzy-notice .
-
-# 2.启动
-docker run -d -p 9100:9100 uzy-notice
-
-# 3.查看状态
-docker ps
-docker logs -f uzy-notice
+bash docker_build.sh
 ```
